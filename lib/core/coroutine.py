@@ -10,10 +10,9 @@
 import asyncio
 from lib.core.data import kb
 import json
-import os
 from types import coroutine
-import time
 import aiofiles
+
 class Coroutine(object):
     __slots__=()
 
@@ -42,21 +41,3 @@ async def loadRule(filepath):
     async with aiofiles.open(filepath) as f:
         data = await f.read()
     return json.loads(data)
-now=time.time()
-rulePath="/Users/wh1t3p1g/Documents/Code/pythonProject/phcat/rules/php"
-files=os.listdir(rulePath)
-filepaths=[]
-for file in files:
-    filepaths.append(os.path.join(rulePath,file))
-for file in filepaths:
-    with open(file) as f:
-        ret=json.loads(f.read())
-        kb.update({ret['description']: ret})
-# tasks=[loadRule(fp) for fp in filepaths]
-# Coroutine().run(tasks)
-print(kb)
-
-print(time.time()-now)
-
-# 0.0015523433685302734
-# 0.0005271434783935547
