@@ -1,0 +1,2 @@
+phply==1.2.4
+prettytable==0.7.2

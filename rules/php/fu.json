@@ -1,0 +1,11 @@
+{
+  "author":"wh1t3P1g",
+
+  "status":"on",
+  "language":"php",
+  "description":"fu",
+  "vul":"arbitrary file upload",
+  "vulID":"",
+  "red_function":"file_move_",
+  "security_function":""
+}
