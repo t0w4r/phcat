@@ -9,9 +9,12 @@
 '''
 import os
 import platform
-from lib.core.data import conf,logger,paths
 from lib.core.enums import OS
 from lib.core.exception import *
+from lib.core.data import paths,rules,logger,conf,options
+from json import loads,JSONDecodeError
+from lib.core.utils import Traversal
+from thirdparty.cobra.utils import Tool
 
 def checkSystemEnvironment():
     '''
@@ -27,6 +30,8 @@ def checkSystemEnvironment():
     elif OS.MACOS in system:
         conf['os']=OS.MACOS
 
+    conf['grep'] = Tool().grep
+
 def setPaths(rootPath):
     '''
     Phcat project paths
@@ -38,6 +43,36 @@ def setPaths(rootPath):
     paths.PHCAT_RULES_PATH=os.path.join(rootPath,'rules')
     paths.PHCAT_LOG_PATH=os.path.join(rootPath,'logs')
     paths.PHCAT_CONFIG_PATH=os.path.join(rootPath,'config')
+    paths.PHCAT_TESTS_PATH = os.path.join(rootPath, 'tests')
+
+
+def loadRules():
+    language=options.language
+    traversal=Traversal()
+    logger.info("start to load [{0}] rules".format(language))
+    dir = os.path.join(paths.PHCAT_RULES_PATH,language)
+    if not os.path.isdir(dir):
+        logger.critical("Only support PHP for now, may try '-l php'")
+        exit()
+    files = traversal.traversal(dir,'json')
+    t=0
+    try:
+        for file in files:
+            with open(file) as f:
+                content = f.read()
+                rule = loads(content)
+                if rule['status']=='on':
+                    t+=1
+                    rules.update({rule['name']:rule})
+    except JSONDecodeError:
+        logger.critical("rules load error, parse json file error")
+        exit()
+    logger.info("total {0}/{1} rules loaded".format(t,len(files)))
+
+def getOsPath():
+    return os.path
+
+
 
 
 

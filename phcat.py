@@ -10,9 +10,12 @@
     only support linux or mac for now
 '''
 import os
+from lib.core.data import logger
 from lib.core.common import checkSystemEnvironment
 from lib.core.common import setPaths
+from lib.core.common import loadRules
 from lib.core.cmdline import cmdLineParse
+from lib.core.scan import scan
 from lib.core.exception import PhcatSystemNotSupportException
 from lib.core.exception import PhcatCmdParserErrorException
 
@@ -22,17 +25,21 @@ def modulePath():
     """
     return os.path.dirname(os.path.realpath(__file__))
 
-def main():
+def main(debug=False):
     try:
         checkSystemEnvironment()
         setPaths(modulePath())
-        cmdLineParse()
-
+        if not debug: cmdLineParse()
+        loadRules()
+        scan()
 
     except PhcatSystemNotSupportException:
         pass
     except PhcatCmdParserErrorException:
         pass
+    except KeyboardInterrupt:
+        logger.warn("Keyboard interrupt")
+        exit()
 
 if __name__=="__main__":
     main()

@@ -1,7 +1,7 @@
 {
   "author":"wh1t3P1g",
-
-  "status":"on",
+  "name":"ssrf",
+  "status":"off",
   "language":"php",
   "description":"ssrf",
   "vul":"arbitrary file upload",

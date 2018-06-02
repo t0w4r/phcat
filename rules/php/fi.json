@@ -1,11 +1,12 @@
 {
   "author":"wh1t3P1g",
-
+  "name":"fi",
   "status":"on",
   "language":"php",
-  "description":"fi",
-  "vul":"arbitrary file upload",
+  "description":"file include vulnerability",
+  "vul":"arbitrary file include",
   "vulID":"",
-  "red_function":"file_move_",
+  "regex":"",
+  "red_function":"include|include_once|require|require_once",
   "security_function":""
 }

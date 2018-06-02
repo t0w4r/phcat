@@ -19,3 +19,8 @@ class OS:
     LINUX = "linux"
     WINDOWS = "windows"
     MACOS = "darwin"
+
+class CUSTOM_TYPE:
+    FILE = 1
+    DIR = 2
+    OTHER = 3

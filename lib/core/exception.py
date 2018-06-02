@@ -19,3 +19,4 @@ class PhcatSystemNotSupportException(PhcatBaseException):
 
 class PhcatCmdParserErrorException(PhcatBaseException):
     pass
+

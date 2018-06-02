@@ -1,11 +1,11 @@
 {
   "author":"wh1t3P1g",
-
-  "status":"on",
+  "name":"sqli",
+  "status":"off",
   "language":"php",
-  "description":"sqli",
+  "description":"sql injection",
   "vul":"arbitrary file upload",
   "vulID":"",
-  "red_function":"file_move_",
+  "red_function":"",
   "security_function":""
 }

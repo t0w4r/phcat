@@ -1,11 +1,11 @@
 {
   "author":"wh1t3P1g",
-
+  "name":"fu",
   "status":"on",
   "language":"php",
-  "description":"fu",
+  "description":"file upload",
   "vul":"arbitrary file upload",
   "vulID":"",
-  "red_function":"file_move_",
+  "red_function":"move_uploaded_file",
   "security_function":""
 }
