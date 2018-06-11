@@ -6,6 +6,6 @@
   "description":"sql injection",
   "vul":"arbitrary file upload",
   "vulID":"",
-  "red_function":"",
+  "regex":"",
   "security_function":""
 }

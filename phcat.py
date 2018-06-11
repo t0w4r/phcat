@@ -18,6 +18,7 @@ from lib.core.cmdline import cmdLineParse
 from lib.core.scan import scan
 from lib.core.exception import PhcatSystemNotSupportException
 from lib.core.exception import PhcatCmdParserErrorException
+from lib.core.exception import PhcatCoroutineErrorException
 
 def modulePath():
     """
@@ -36,6 +37,8 @@ def main(debug=False):
     except PhcatSystemNotSupportException:
         pass
     except PhcatCmdParserErrorException:
+        pass
+    except PhcatCoroutineErrorException:
         pass
     except KeyboardInterrupt:
         logger.warn("Keyboard interrupt")

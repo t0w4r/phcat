@@ -6,6 +6,6 @@
   "description":"file upload",
   "vul":"arbitrary file upload",
   "vulID":"",
-  "red_function":"move_uploaded_file",
+  "regex":"move_uploaded_file",
   "security_function":""
 }

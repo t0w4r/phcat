@@ -14,6 +14,7 @@ from lib.core.data import options
 if __name__=='__main__':
     options.extension=['php']
     options.language='php'
+    options.threads=10
     options.target=os.path.abspath('program')
     main(debug=True)
 

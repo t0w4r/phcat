@@ -21,6 +21,10 @@ def cmdLineParse():
                      dest="language",
                      default="php",
                      help="setup program language")
+    cli.add_argument('--threads',
+                     dest="threads",
+                     default=10,
+                     help="setup threads, default 10")
     cli.add_argument('-e', '--extension',
                      dest="extension",
                      default="php",
@@ -35,6 +39,7 @@ def cmdLineParse():
     checkArgs(args,parser)
     options.target = args.target
     options.language = args.language
+    options.threads=args.threads
     options.extension = [args.extension] if ',' not in args.extension else args.extension.split(',')
     options.framework = args.framework
 

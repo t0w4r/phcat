@@ -20,3 +20,5 @@ class PhcatSystemNotSupportException(PhcatBaseException):
 class PhcatCmdParserErrorException(PhcatBaseException):
     pass
 
+class PhcatCoroutineErrorException(PhcatBaseException):
+    pass

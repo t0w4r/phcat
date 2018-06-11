@@ -7,28 +7,37 @@
     description:
     
 '''
+from gevent import monkey
+monkey.patch_all()
 from types import coroutine
-from subprocess import check_output
-def run(coroutine):
-    try:
-        coroutine.send(None)
-    except StopIteration as e:
-        return e.value
-
-@coroutine
-async def async_generator_function():
-    p=check_output(['ls'])
-    yield p
-
-async def async_function():
-    g=async_generator_function()
-    return await g.asend(None)
+from subprocess import check_output,Popen,PIPE
+import asyncio,time
+import gevent
+from gevent.pool import Pool
 
 
-async def await_coroutine():
-    result = await async_function()
+def run_cmd(i):
+    p = Popen(['ping', '127.0.0.1', '-c', '2'], stdout=PIPE, stderr=PIPE)
+    result, error = p.communicate()
     print(result)
+@coroutine
+async def runCmd():
+    p = Popen(['ping','127.0.0.1','-c','2'], stdout=PIPE, stderr=PIPE)
+    result, error = yield p.communicate()
+    print(result)
+async def await_():
+    r = runCmd()
+    await r.asend(None)
+async def await__():
+    await await_()
+now = time.time()
+# loop = asyncio.get_event_loop()
+# myfun_list = (await__() for i in range(10))
+# loop.run_until_complete(asyncio.gather(*myfun_list))
+# run(await__())
+p=Pool(10)
+p.map_async(run_cmd,[i for i in range(10)])
+print(time.time()-now)
 
-# print(async_generator_function())
-run(await_coroutine())
 
+# 10.092294216156006

@@ -6,6 +6,6 @@
   "description":"ssrf",
   "vul":"arbitrary file upload",
   "vulID":"",
-  "red_function":"file_move_",
+  "regex":"file_move_",
   "security_function":""
 }

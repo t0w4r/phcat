@@ -6,7 +6,6 @@
   "description":"file include vulnerability",
   "vul":"arbitrary file include",
   "vulID":"",
-  "regex":"",
-  "red_function":"include|include_once|require|require_once",
+  "regex":"include|include_once|require|require_once",
   "security_function":""
 }
